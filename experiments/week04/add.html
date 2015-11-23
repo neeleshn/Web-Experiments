@@ -1,0 +1,53 @@
+<html>
+<head>
+<title>Week 03 Experiments</title>
+<link rel="stylesheet" href="../../css/week03/bootstrap-3.3.2-dist/css/bootstrap.min.css"/>
+<script src="../../css/week03/bootstrap-3.3.2-dist/js/bootstrap.min.js"></script>
+<script src="../../css/week03/bootstrap-3.3.2-dist/js/bootstrap.js"></script>
+<script>
+    function addthis() {        
+        var fn = document.getElementById("ipfn").value;
+        var ln = document.getElementById("ipln").value;
+        tab1.innerHTML = tab1.innerHTML + '<tr><td>' + fn + '</td><td>' + ln + '</td></tr>';
+    }
+</script>
+</head>
+<body>
+<table id="tab1" class="container jumbotron table">
+<br />
+<tr>
+<td><h3>First Name</h3></td><td><h3>Last Name</h3></td><td></td>
+</tr>
+<tr>
+<hr />
+<td><input type=text id="ipfn" /></td><td><input type=text id="ipln" /></td>
+<td><input type=button id="add1" value="Add" onclick="addthis()" /></td>
+</tr>
+</table>
+<hr />
+<div class="container jumbotron">
+<b> HTML Code Snippet : </b><br />
+&lt;td&gt;&lt;input type=text id="Text1" /&gt;&lt;/td&gt;&lt;td&gt;&lt;input type=text id="Text2" /&gt;&lt;/td&gt;<br />
+&lt;td&gt;&lt;input type=button id="Button1" value="Add" onclick="addthis()" /&gt;&lt;/td&gt;<br />
+<br /><br /><hr />
+<b> jQuery Code Snippet : </b><br />
+function addthis() <br />
+{<br />
+    var fn = document.getElementById("ipfn").value;<br />
+    var ln = document.getElementById("ipln").value;<br />
+    tab1.innerHTML = tab1.innerHTML + '<tr><td>' + fn + '</td><td>' + ln + '</td></tr>';<br />
+}<br /><br /><hr />
+<b> About the Experiment : </b><br />
+<p>This experiment is about dynamically adding text to HTML page using jQuery. Write anything in the input text box and press add button to find them added below</p>
+<br /><hr />
+<b>Source Code : </b>
+<a href="http://net4.ccs.neu.edu/home/neelesh/fileview/Default.aspx?~/experiments/week04/add.html">HTML</a>
+<br /><br /><hr />
+
+<b>References</b> :  
+<a href="http://www.w3schools.com/html/default.asp">W3Schools</a>
+<br />
+<br />
+</div>
+</body>
+</html>

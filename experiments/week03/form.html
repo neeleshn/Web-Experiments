@@ -1,0 +1,61 @@
+<html>
+<head>
+<script src="../../css/week03/w03ex04.js"></script>
+<title>JS Form</title></head>
+<body>
+<form id="form1">    
+<h1>Login Authentication</h1>
+    Please enter email and password to login<br />
+    Email id : <input type=email id="emailId" /> (Any email ID)<br />
+    Password : <input type=password id="pwd" /> (password = "admin")<br />
+    <input type=button id="submit1" value="Submit" onclick="validate()" />
+    <p id="para1"></p>
+</form>
+<hr />
+<b> HTML Code Snippet : </b><br />
+Email id : &lt;input type=email id="email1" /&gt; (Any email ID)<br />
+Password : &lt;input type=password id="Password1" /&gt; (password = "admin")<br />
+&lt;input type=button id="Button1" value="Submit" onclick="validate()" /&gt;<br/>
+&lt;p id="p1"&gt;&lt;/p&gt;
+<hr />
+<b> JavaScript Code Snippet : </b><br />
+function validate() <br />
+{<br />
+    var userName = document.getElementById("emailId").value;<br />
+    var password = document.getElementById("pwd").value;<br />
+    <br />
+    if ((userName == "" || userName == null) && (password == "" || password == null)) <br />
+    {<br />
+        alert("Please enter both Email Id and Password");<br />
+    }<br />
+    else if (password != "admin") <br />
+    {<br />
+        document.getElementById("para1").innerHTML = "Wrong Password!!!";<br />
+        document.getElementById("para1").style.color = "red";<br />
+    }<br />
+    else if (emailTypeCheck(userName)) {<br />
+    alert("Please enter email properly");<br />
+    }<br />
+    else <br />
+    {<br />
+        document.getElementById("para1").innerHTML = "Login Successful";<br />
+        document.getElementById("para1").style.color = "green";<br />
+    }<br />
+}<br />
+<br />
+<hr />
+<b> About the Experiment : </b><br />
+<p>This experiment is about how using JavaScript we can dynamically validate the inputs that can be given to a HTML page</p>
+<hr />
+<b>Source Code : </b>
+<a href="http://net4.ccs.neu.edu/home/neelesh/fileview/Default.aspx?~/experiments/week03/form.html">HTML</a>
+<a href="http://net4.ccs.neu.edu/home/neelesh/fileview/Default.aspx?~/css/week03/w03ex04.js">JavaScript</a>
+<br />
+<hr />
+
+<b>References</b> :  
+<a href="http://www.w3schools.com/html/default.asp">W3Schools</a>
+<br />
+
+</body>
+</html>

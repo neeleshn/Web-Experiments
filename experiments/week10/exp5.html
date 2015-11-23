@@ -1,0 +1,48 @@
+<html>
+<head>
+    <title>Week 08 Experiments</title>
+    <link rel="stylesheet" href="../../css/week03/bootstrap-3.3.2-dist/css/bootstrap.min.css" />
+    <script src="../../css/week05/angular.min.js"></script>
+</head>
+<body>
+    <div class="container jumbotron">
+        <h2>Station Details Details</h2>
+        <br /><br />
+        <a href="http://neeleshnweek09-testweek09.rhcloud.com/ex9" target="_blank">Back Bay Station Details</a>
+        <br /><br />
+    </div>
+    <div class="container">
+        <b>JavaScript Code Snippet : </b>
+        <br />
+<pre>
+function ctrlfn($scope, $http) {
+    $http.get("http://realtime.mbta.com/developer/api/v2/predictionsbystop?api_key=wX9NwuHnZU2ToO7GmGR9uw&stop=place-bbsta&format=json")
+    .success(function (response) {
+        $scope.details = response;
+        console.log(response);
+    })
+}
+</pre>
+        <br />
+        <br />
+        <hr />
+        <b>About the Experiment : </b>
+        <br />
+        <pre>
+        <p>
+            This experiment about finding the details of an MBTA Station.
+        </p>
+        </pre>
+        <br />
+        <hr />
+        <b>Source Code : </b><a href="http://net4.ccs.neu.edu/home/neelesh/fileview/Default.aspx?~/experiments/week10/exp5.html">
+            Code</a>
+        <br />
+        <br />
+        <hr />
+        <b>References</b> : <a href="https://graph.facebook.com/">MBTA API</a>
+        <br />
+        <br />
+    </div>
+</body>
+</html>

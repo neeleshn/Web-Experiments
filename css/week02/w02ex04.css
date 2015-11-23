@@ -1,0 +1,171 @@
+#maroon
+{
+    background-color: maroon;
+    width:800px;
+    height:500px;
+    position:absolute;
+    top : 0;
+    bottom : 0;
+    right : 0;
+    left : 0;
+    margin:auto;
+}
+
+#navy
+{
+    background-color: navy;
+    width:600px;
+    height:300px;
+    position:absolute;
+    top : 100;
+    bottom : 0;
+    right : 0;
+    left : 0;
+    margin:auto;
+    text-align:center;
+}
+
+#yellow
+{
+    background-color: GoldenRod;
+    width:300px;
+    height:50px;
+    position:absolute;
+    top : 0;
+    bottom : 300;
+    right : 0;
+    left : 0;
+    margin:auto;
+    text-align:center;
+    line-height:250%;
+}
+
+img
+{
+    position:absolute;
+    top : 0;
+    bottom : 0;
+    right : 0;
+    left : 0;
+    margin:auto;
+    width:auto;
+    height:auto;
+    content:url("../../images/experiments/w02ex04.jpg");
+}
+
+@media screen and (max-width: 1000px) and (min-width: 650px)
+{
+#maroon
+{
+    background-color: maroon;
+    width:500px;
+    height:500px;
+    position:absolute;
+    top : 0;
+    bottom : 0;
+    right : 0;
+    left : 0;
+    margin:auto;
+}
+
+#navy
+{
+    background-color: navy;
+    width:300px;
+    height:300px;
+    position:absolute;
+    top : 100;
+    bottom : 0;
+    right : 0;
+    left : 0;
+    margin:auto;
+    text-align:center;
+}
+
+#yellow
+{
+    background-color: GoldenRod;
+    width:300px;
+    height:50px;
+    position:absolute;
+    top : 0;
+    bottom : 300;
+    right : 0;
+    left : 0;
+    margin:auto;
+    text-align:center;
+    line-height:250%;
+}
+
+img
+{
+    position:absolute;
+    top : 0;
+    bottom : 0;
+    right : 0;
+    left : 0;
+    margin:auto;
+    width:auto;
+    height:auto;
+    content:url("../../images/experiments/w02ex01.jpg");
+}
+}
+
+@media screen and (max-width: 650px)
+{
+#maroon
+{
+    background-color: maroon;
+    width:300px;
+    height:500px;
+    position:absolute;
+    top : 0;
+    bottom : 0;
+    right : 0;
+    left : 0;
+    margin:auto;
+}
+
+#navy
+{
+    background-color: navy;
+    width:150px;
+    height:300px;
+    position:absolute;
+    top : 100;
+    bottom : 0;
+    right : 0;
+    left : 0;
+    margin:auto;
+    text-align:center;
+}
+
+#yellow
+{
+    background-color: GoldenRod;
+    width:150px;
+    height:50px;
+    position:absolute;
+    top : 0;
+    bottom : 300;
+    right : 0;
+    left : 0;
+    margin:auto;
+    text-align:center;
+    line-height:250%;
+}
+
+img
+{
+    position:absolute;
+    top : 0;
+    bottom : 0;
+    right : 0;
+    left : 0;
+    margin:auto;
+    width:auto;
+    height:auto;
+    content:url("../../images/experiments/w02ex03.jpg");
+}
+}
+

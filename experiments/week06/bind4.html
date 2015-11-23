@@ -1,0 +1,296 @@
+<html>
+<head>
+    <title>Week 05 Experiments</title>
+    <link rel="stylesheet" href="../../css/week03/bootstrap-3.3.2-dist/css/bootstrap.min.css" />
+    <script src="../../css/week05/angular.min.js"></script>
+</head>
+<body>
+    <div class="container jumbotron" ng-app="myapp" ng-controller="ctrl123">
+        <br />
+        <div ng-show="detail">
+            <h2>
+                Matches Details</h2>
+            <center>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <b>
+                            <h3>
+                                <b>Home Team : </b>{{detail.home_team.country}} :
+                                <h1>
+                                    <b>{{detail.home_team.goals}}</b></h1>
+                            </h3>
+                        </b>
+                    </div>
+                    <div class="col-sm-6">
+                        <b>
+                            <h3>
+                                <b>Away Team : </b>{{detail.away_team.country}} :
+                                <h1>
+                                    <b>{{detail.away_team.goals}}</b></h1>
+                            </h3>
+                        </b>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h2>
+                            <b>Winner : </b>{{detail.winner}}
+                        </h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <b><b>Location : </b>{{detail.location}} </h2></b></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <b><b>Date and Time : </b>{{detail.datetime}} </h2></b></div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-sm-6" style="background-color: lavender;">
+                        <h4>
+                            Home Team Events</h4>
+                        <ul>
+                            <li ng-repeat="x in detail.home_team_events">{{x.type_of_event}} : {{x.player}} : {{x.time}}
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6" style="background-color: lavender;">
+                        <h4>
+                            Away Team Events</h4>
+                        <ul>
+                            <li ng-repeat="x in detail.away_team_events">{{x.type_of_event}} : {{x.player}} : {{x.time}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+        </div>
+        </center>
+        <div ng-show="favmatches.length > 0">
+            <h2>
+                Favorite Matches</h2>
+            <br />
+            <table class="table table-striped">
+                <tr>
+                    <th>
+                        Home Team
+                    </th>
+                    <th>
+                        Away Team
+                    </th>
+                    <th>
+                        Winner
+                    </th>
+                    <th>
+                        &nbsp;
+                    </th>
+                </tr>
+                <tr ng-repeat="x in favmatches">
+                    <td>
+                        {{x.home_team.country}}
+                    </td>
+                    <td>
+                        {{x.away_team.country}}
+                    </td>
+                    <td>
+                        {{x.winner}}
+                    </td>
+                    <td>
+                        <button class="btn-danger" ng-click="details(x)">
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="input-group">
+            <input type="text" ng-model="ipteam" class="form-control">
+            <span class="input-group-btn">
+                <button ng-click="searchteam()" class="btn btn-default">
+                    Search!!</button>
+            </span>
+        </div>
+        <div ng-show="!fifacode">
+            Enter one among the 32 countries that played Fifa World Cup 2014</div>
+        <div ng-show="fifacode">
+            <h2>
+                {{ipteam}} - World Cup 2014 Matches and Results</h2>
+            <br />
+            <table class="table table-striped">
+                <tr>
+                    <th>
+                        Home Team
+                    </th>
+                    <th>
+                        Away Team
+                    </th>
+                    <th>
+                        Winner
+                    </th>
+                    <th>
+                        &nbsp;
+                    </th>
+                </tr>
+                <tr ng-repeat="x in teams">
+                    <td>
+                        {{x.home_team.country}}
+                    </td>
+                    <td>
+                        {{x.away_team.country}}
+                    </td>
+                    <td>
+                        {{x.winner}}
+                    </td>
+                    <td>
+                        <button class="btn-danger" ng-click="remove($index)">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                        <button class="btn-primary" ng-click="addfav(x)">
+                            <span class="glyphicon glyphicon-star"></span>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script>
+        function ctrlfn($scope, $http) {
+            $scope.favmatches = [];
+            $scope.detail = null;
+            var countries = [];
+            var codefifa = null;
+            var flag = 0;
+            $scope.remove = function (idx) {
+                console.log(idx);
+                $scope.teams.splice(idx, 1);
+            }
+
+            $scope.addfav = function (x) {
+                console.log(x);
+                $scope.favmatches.push(x);
+            }
+
+            $scope.details = function (x) {
+                console.log(x);
+                $scope.detail = x;
+            }
+
+            $scope.searchteam = function () {
+                console.log($scope.ipteam);
+                $http.get("http://worldcup.sfg.io/teams/")
+            .success(function (response) {
+                countries = response;
+                flag = 0;
+                for (var i = 0; i < countries.length; i++) {
+                    if ($scope.ipteam.toLowerCase() == countries[i].country.toLowerCase()) {
+                        $scope.fifacode = countries[i].fifa_code;
+                        codefifa = countries[i].fifa_code;
+                        flag = 1;
+                        console.log(codefifa);
+                    }
+                    else if (countries[i].alternate_name != null) {
+                        if ($scope.ipteam.toLowerCase() == countries[i].alternate_name.toLowerCase()) {
+                            $scope.fifacode = countries[i].fifa_code;
+                            codefifa = countries[i].fifa_code;
+                            flag = 1;
+                            console.log(codefifa);
+                        }
+                    }
+                }
+
+                if (flag == 0) {
+                    $scope.fifacode = null;
+                    codefifa = null;
+                } 
+                if (codefifa != null) {
+                    $http.get("http://worldcup.sfg.io/matches/country?fifa_code=" + codefifa)
+                    .success(function (response) {
+                        $scope.teams = response;
+                    })
+                }
+            })
+            }
+        }
+
+        angular.module('myapp', []).controller("ctrl123", ctrlfn);
+    </script>
+    <div class="container">
+        <b>HTML Code Snippet : </b>
+        <br />
+        <pre>
+        &lt;div class="input-group"&gt;
+            &lt;input type="text" ng-model="ipteam" class="form-control"&gt;
+            &lt;span class="input-group-btn"&gt;
+                &lt;button ng-click="searchteam()" class="btn btn-default"&gt;Search!!&lt;/button&gt;
+            &lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div ng-show="!fifacode"&gt;
+            Enter one among the 32 countries that played Fifa World Cup 2014&lt;/div&gt;
+        &lt;div ng-show="fifacode"&gt;
+        </pre>
+        <br />
+        <br />
+        <hr />
+        <b>JavaScript Code Snippet : </b>
+        <br />
+        <pre>
+            $scope.searchteam = function () {
+                console.log($scope.ipteam);
+                $http.get("http://worldcup.sfg.io/teams/")
+            .success(function (response) {
+                countries = response;
+                flag = 0;
+                for (var i = 0; i < countries.length; i++) {
+                    if ($scope.ipteam.toLowerCase() == countries[i].country.toLowerCase()) {
+                        $scope.fifacode = countries[i].fifa_code;
+                        codefifa = countries[i].fifa_code;
+                        flag = 1;
+                        console.log(codefifa);
+                    }
+                    else if (countries[i].alternate_name != null) {
+                        if ($scope.ipteam.toLowerCase() == countries[i].alternate_name.toLowerCase()) {
+                            $scope.fifacode = countries[i].fifa_code;
+                            codefifa = countries[i].fifa_code;
+                            flag = 1;
+                            console.log(codefifa);
+                        }
+                    }
+                }
+
+                if (flag == 0) {
+                    $scope.fifacode = null;
+                    codefifa = null;
+                } 
+                if (codefifa != null) {
+                    $http.get("http://worldcup.sfg.io/matches/country?fifa_code=" + codefifa)
+                    .success(function (response) {
+                        $scope.teams = response;
+                    })
+                }
+            })
+            }
+        </pre>
+        <br />
+        <br />
+        <hr />
+        <b>About the Experiment : </b>
+        <br />
+        <pre>
+        <p>
+            This experiment is about displaying data from an API. We can dynamically search for the countries in world cup 2014. I used two APIs of FIFA Worldcup 2014. One for deriving the fifa codes of the country entered and other for using finding the matches played by those countries using the fifa codes. We can also delete the rows dynamically and add matches to favorites list. Upon favoriting the matches we can select a match to view its details. 
+        </p>
+        </pre>
+        <br />
+        <hr />
+        <b>Source Code : </b><a href="http://net4.ccs.neu.edu/home/neelesh/fileview/Default.aspx?~/experiments/week06/bind3.html">
+            Code</a>
+        <br />
+        <br />
+        <hr />
+        <b>References</b> : <a href="http://www.w3schools.com">W3Schools</a>
+        <br />
+        <br />
+    </div>
+</body>
+</html>

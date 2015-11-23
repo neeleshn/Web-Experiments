@@ -1,0 +1,145 @@
+<html>
+<head>
+    <title>Week 05 Experiments</title>
+    <link rel="stylesheet" href="../../css/week03/bootstrap-3.3.2-dist/css/bootstrap.min.css" />
+    <script src="../../css/week05/angular.min.js"></script>
+</head>
+<body>
+    <div class="container jumbotron" ng-app="myapp" ng-controller="ctrl123">
+        <br />
+        <div ng-show="favmatches.length > 0">
+        <h2>Favorite Matches</h2>
+        <br />        
+            <table class="table table-striped">
+            <tr>
+                <th>
+                    Home Team
+                </th>
+                <th>
+                    Away Team
+                </th>
+                <th>
+                    Winner
+                </th>
+            </tr>
+            <tr ng-repeat="x in favmatches">
+                <td>
+                    {{x.home_team.country}}
+                </td>
+                <td>
+                    {{x.away_team.country}}
+                </td>
+                <td>
+                    {{x.winner}}
+                </td>
+            </tr>
+        </table>
+        </div>
+        <h2>Argentina World Cup 2014 Matches and Results</h2>
+        <br />        
+        <table class="table table-striped">
+            <tr>
+                <th>
+                    Home Team
+                </th>
+                <th>
+                    Away Team
+                </th>
+                <th>
+                    Winner
+                </th>
+                <th>
+                    &nbsp;
+                </th>
+            </tr>
+            <tr ng-repeat="x in teams">
+                <td>
+                    {{x.home_team.country}}
+                </td>
+                <td>
+                    {{x.away_team.country}}
+                </td>
+                <td>
+                    {{x.winner}}
+                </td>
+                <td>
+                    <button class="btn btn-danger" ng-click="remove($index)">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                    <button class="btn btn-primary" ng-click="addfav(x)">
+                        <span class="glyphicon glyphicon-star"></span>
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        function ctrlfn($scope, $http) {
+            $scope.favmatches = [];
+            $http.get("http://worldcup.sfg.io/matches/country?fifa_code=ARG")
+            .success(function (response) {
+                $scope.teams = response;
+            })
+
+            $scope.remove = function (idx) {
+                console.log(idx);
+                $scope.teams.splice(idx,1);
+            }
+
+            $scope.addfav = function (x) {
+                console.log(x);
+                $scope.favmatches.push(x);
+            }
+        }
+        angular.module('myapp', []).controller("ctrl123", ctrlfn);
+    </script>
+    <div class="container">
+        <b>HTML Code Snippet : </b>
+        <br />
+        <pre>
+            &lt;div ng-show="favmatches.length > 0">
+            .
+            .
+            .
+            Some HTML Content...
+            .
+            .
+            .
+            &lt;button class="btn-primary" ng-click="addfav(x)"&gt;
+                &lt;span class="glyphicon glyphicon-star"&gt;&lt;/span&gt;
+            &lt;/button&gt;
+        </pre>
+        <br />
+        <br />
+        <hr />
+        <b>JavaScript Code Snippet : </b>
+        <br />
+        <pre>
+            $scope.addfav = function (x) {
+                console.log(x);
+                $scope.favmatches.push(x);
+            }
+        </pre>
+        <br />
+        <br />
+        <hr />
+        <b>About the Experiment : </b>
+        <br />
+        <pre>
+        <p>
+            This experiment is about displaying data from an API. I used an API of FIFA Worldcup 2014. We can also delete the rows dynamically and add matches to favorites list.
+        </p>
+        </pre>
+        <br />
+        <hr />
+        <b>Source Code : </b><a href="http://net4.ccs.neu.edu/home/neelesh/fileview/Default.aspx?~/experiments/week06/bind2.html">
+            Code</a>
+        <br />
+        <br />
+        <hr />
+        <b>References</b> : <a href="http://www.w3schools.com">W3Schools</a>
+        <br />
+        <br />
+    </div>
+</body>
+</html>

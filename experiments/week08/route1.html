@@ -1,0 +1,39 @@
+<html>
+<head>
+    <title>Week 08 Experiments</title>
+    <link rel="stylesheet" href="../../css/week03/bootstrap-3.3.2-dist/css/bootstrap.min.css" />
+    <script src="../../css/week05/angular.min.js"></script>
+    <script src="../../css/week05/angular-route.js"></script>
+</head>
+<body ng-app="RouteApp">
+    <div class="container">
+        <nav>
+            <a href="#/home">Home</a> |
+            <a href="#/about">About</a> |
+            <a href="#/contact">Contact</a>
+        </nav>
+
+        <div ng-view>
+        </div>
+    </div>
+    <script>
+        function ConfigFn($routeProvider) {
+            $routeProvider.
+            when('/home', {
+                templateUrl: 'partials/home.html'
+            }).
+            when('/about', {
+                templateUrl: 'partials/about.html'
+            }).
+            when('/contact', {
+                templateUrl: 'partials/contact.html'
+            }).
+            otherwise({
+                redirectTo: '/home'
+            });
+        }
+        
+        angular.module('RouteApp', ['ngRoute']).config(['$routeProvider', ConfigFn]);
+    </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<html>
+<head>
+<link rel="stylesheet" href="../../css/week03/bootstrap-3.3.2-dist/css/bootstrap.min.css"/>
+<script src="../../css/week03/bootstrap-3.3.2-dist/js/bootstrap.min.js"></script>
+<script src="../../css/week03/bootstrap-3.3.2-dist/js/bootstrap.js"></script>
+<script src="../../css/week03/w03ex04.js"></script>
+<title>JS  Inputs</title></head>
+<body>
+<div class="container">
+<div class="jumbotron">
+Please select a color : 
+    <input type="color" id="colorId" onchange="ChangeColor()" />
+    <h1 id="heading">JavaScript Inputs</h1>
+    <input type=button id="Button1" value="Click for Alert" onclick="alert1()" />
+    <h2 id="head2" onmouseover=hover1() onmouseout=hover2()>Please Hover</h2>
+</div></div>
+<hr />
+<b> HTML Code Snippet : </b><br />
+&lt;input type="color" id="color1" onchange="ChangeColor()" /&gt;<br />
+&lt;h1 id="h1"&gt;JavaScript Inputs&lt;/h1&gt;<br />
+&lt;input type=button id="Button2" value="Click for Alert" onclick="alert1()" /&gt;<br />
+&lt;h2 id="h2" onmouseover=hover1() onmouseout=hover2()&gt;Please Hover&lt;/h2&gt;<br />
+<hr />
+<b> JavaScript Code Snippet : </b><br />
+
+function hover1() {<br />
+    document.getElementById("head2").innerHTML = "Hovered";<br />
+}<br />
+<br />
+function hover2() {<br />
+    document.getElementById("head2").innerHTML = "Please Hover";<br />
+}<br />
+<br />
+function alert1() {<br />
+    alert("You are Hacked !!! :P");<br />
+}<br />
+<br />
+function ChangeColor() {<br />
+    var value = document.getElementById("colorId").value;<br />
+    document.getElementById("heading").style.color = value;<br />
+}<br />
+<br />
+<hr />
+<b> About the Experiment : </b><br />
+<p>This experiment is about different kind of inputs that can be given to a HTML page and how using javascript we can dynamically change the HTML page</p>
+<hr />
+<b>Source Code : </b>
+<a href="http://net4.ccs.neu.edu/home/neelesh/fileview/Default.aspx?~/experiments/week03/JSinput.html">HTML</a>
+<a href="http://net4.ccs.neu.edu/home/neelesh/fileview/Default.aspx?~/css/week03/w03ex04.js">JavaScript</a>
+<br />
+<hr />
+
+<b>References</b> :  
+<a href="http://www.w3schools.com/html/default.asp">W3Schools</a>
+<br />
+</body>
+</html>

@@ -1,0 +1,6 @@
+../../story/whatisnext.htm?../experiments/week06/week06.txt                             WEEK 06 - AngularJS : CRUD
+bind.html				Deriving data from API
+bind1.html                                                	Deleting data derived from API
+bind2.html                                                	Adding data to favorites list
+bind3.html                                                	Checking the details of favorite matches
+bind4.html                                                	Dynamically searching data in multiple APIs

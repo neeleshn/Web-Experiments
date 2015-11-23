@@ -1,0 +1,75 @@
+.bodypad 
+{
+    padding:30px;
+    font-size:large;
+}
+
+.navbar-nav>li {
+    float: none;
+}
+
+
+@media screen and (max-width: 2000px) {
+  .profname {
+    font-size: 50px;
+    text-align:right;
+    padding-right:430px;
+  }
+  .cover-wrap 
+  {
+    height: 450px;
+    overflow: hidden;
+    width:100%;
+  }
+  .prof-wrap
+  {
+      width:300px; 
+      float:right; 
+      position:absolute; 
+      top:280px; 
+      right:100px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .profname {
+    font-size: 30px;
+    text-align:right;
+    padding-right:310px;
+  }
+  .cover-wrap 
+  {
+    height: 300px;
+    overflow: hidden;
+  }
+  .prof-wrap
+  {
+      width:200px; 
+      float:right; 
+      position:absolute; 
+      top:200px; 
+      right:10%;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .profname {
+    font-size: 16px;  
+    text-align:right;
+    padding-right:150px;
+  }
+  .cover-wrap 
+  {
+    height: 200px;
+    overflow: hidden;
+  }  
+  .prof-wrap
+  {
+      width:120px; 
+      float:right; 
+      position:absolute; 
+      top:190px; 
+      right:5%;
+  }
+}
+

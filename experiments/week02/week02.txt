@@ -1,0 +1,6 @@
+../../story/whatisnext.htm?../experiments/week02/week02.txt                             WEEK 02 - CSS and Responsive Pages
+inline.html                                                        Inline CSS
+head.html                                                     CSS in HTML Head
+separate.html                                                     Separate CSS File
+media1.html                                                     Responsive Image
+nav-bar.html                                                     Responsive Navigation Bar

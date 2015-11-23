@@ -1,0 +1,54 @@
+
+#maroon
+{
+    background-color: maroon;
+    width:50%;
+    height:500px;
+    position:absolute;
+    top : 0;
+    bottom : 0;
+    right : 0;
+    left : 0;
+    margin:auto;
+}
+
+#navy
+{
+    background-color: navy;
+    width:60%;
+    height:60%;
+    position:absolute;
+    top : 100;
+    bottom : 0;
+    right : 0;
+    left : 0;
+    margin:auto;
+    text-align:center;
+}
+
+#yellow
+{
+    background-color: GoldenRod;
+    width:60%;
+    height:10%;
+    position:absolute;
+    top : 0;
+    bottom : 300;
+    right : 0;
+    left : 0;
+    margin:auto;
+    text-align:center;
+    line-height:250%;
+}
+
+img
+{
+    position:absolute;
+    top : 0;
+    bottom : 0;
+    right : 0;
+    left : 0;
+    margin:auto;
+    width:50%;
+    height:auto;
+}

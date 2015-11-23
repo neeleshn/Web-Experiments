@@ -1,0 +1,72 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../../css/week02/w02ex05.css" />
+<title>css file</title>
+</head>
+<body>
+    <div id="maroon">        
+            <nav><ul>
+            <li><a href="#">Nav1</a></li>
+            <li><a href="#">Nav2</a></li>
+            <li><a href="#">Nav3</a></li>
+            <li><a href="#">Nav4</a></li>
+            <li><a href="#">Nav5</a></li>
+            </ul></nav>
+    </div>
+<div style="margin-top:300px">
+    <h1>Responsive Navigation Bar</h1>
+<b>HTML Code Snippet : </b><br />
+<code>
+&lt;div id="maroon"&gt;
+<br />
+&lt;nav&gt;&lt;ul&gt;
+<br />
+            &lt;li&gt;&lt;a href="#"&gt;Nav1&lt;/a&gt;&lt;/li&gt;
+            <br />
+            &lt;li&gt;&lt;a href="#"&gt;Nav2&lt;/a&gt;&lt;/li&gt;
+            <br />
+&lt;/ul&gt;&lt;/nav&gt;<br />
+&lt;/div&gt;
+<br />
+</code>
+<br />
+<hr />
+<br />
+<b>CSS Code Snippet : </b><br />
+<code>
+@media screen and (max-width: 700px) {<br />
+#maroon {<br />
+    background-color: maroon;<br />
+    width:200px;<br />
+    height:50%;<br />
+    top : 0;<br />
+    bottom : 0;<br />
+    right : 0;<br />
+    left : 0;<br />
+    margin:left;<br />
+}<br />
+</code>
+<br />
+<hr />
+<b>About the experiment : </b>
+<p>
+In this experiment we use <b> @media Screen </b> to find out the screen size and design the page according to the screen size. 
+In this experiment the navigation bar is a single horizontal line in the top of the screen for large screens like laptops and desktops.
+As the screen size reduces to a specific limit we align the navigation bar vertically to accomodate for smaller screens. 
+We use CSS to design the page for each screen size. Each tag behaves differently for different screen sizes.
+</p>
+<br />
+<hr />
+<b>Source Code</b><br />
+<a href="http://net4.ccs.neu.edu/home/neelesh/fileview/Default.aspx?~/experiments/week02/nav-bar.html">HTML</a>
+<a href="http://net4.ccs.neu.edu/home/neelesh/fileview/Default.aspx?~/css/week02/w02ex05.css">CSS</a>
+<br />
+<hr />
+
+<b>References</b> :  
+<a href="http://www.w3schools.com/html/default.asp">W3Schools</a>
+<br />
+
+</div>    
+</body>
+</html>

@@ -1,0 +1,32 @@
+<html>
+<head>
+    <title>Week 09 Experiments</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <script src="js/angular.min.js"></script>    
+</head>
+<body>
+    <div class="container jumbotron" ng-app="myapp" ng-controller="ctrl123">
+        <br />
+        <h2>Get from DB</h2>
+        <br />
+        <input type="button" ng-click="calldb()" value="Get From DB"/><br />
+        <div ng-view="viewm">{{fromdb}}</div>
+    </div>
+    <script>
+        function ctrlfn($scope, $http) {
+            console.log("in control");
+            $scope.calldb= function() {
+                console.log("in function");
+                $http.get("/find").success(function (response) {
+                console.log(response);
+                $scope.fromdb = response[0].name;
+                $scope.viewm = true;
+            })
+
+            }
+        }
+        angular.module('myapp', []).controller("ctrl123", ctrlfn);
+    </script>    
+</body>
+</html>
+

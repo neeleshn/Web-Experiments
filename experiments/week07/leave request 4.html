@@ -1,0 +1,317 @@
+<html>
+<head>
+    <title>Leave Request Form</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/LeaveCSS.css" />
+    <script src="js/angular.min.js"></script>
+    <script src="js/LeaveCtrl.js"></script>
+    <script src="js/LeaveApp.js"></script>
+</head>
+<body>
+    <div class="container jumbotron" ng-app="LeaveApp" ng-controller="LeaveCtrl">
+        <h1>
+            Leave Request Form</h1>
+        <form name="LeaveForm" novalidate>
+        <div class="row">
+            <div class="col-md-3 col-sm4-style">
+                <b>Name </b>
+            </div>
+            <div class="col-md-6 col-sm8-style">
+                <input type="text" class="inputStyle" name="empname" ng-model="empmodel" placeholder="FirstName LastName" required />
+            </div>
+            <div class="col-md-3">
+                <span style="color: red" ng-show="LeaveForm.empname.$error.required">Enter Name!!!</span>
+            </div>
+            <!-- ng-show="LeaveForm.empname.$error.required" checks if the input field is blank and shows this instruction. -->
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm4-style">
+                <b>Email</b>
+            </div>
+            <div class="col-md-6 col-sm8-style">
+                <input name="emailname" type="text" class="inputStyle" ng-model="emailmodel" ng-change="mailChange()"
+                    placeholder="first.last@boston.gov or first.m.last@boston.gov" required />
+                <!-- ng-change="mailChange()" checks if there is a change in the input field and calls the mailChange() function. -->
+            </div>
+            <div class="col-md-3">
+                <span style="color: red" ng-show="LeaveForm.emailname.$error.required">Enter Email Address!!!</span>
+                <span style="color: red" ng-hide="LeaveForm.emailname.$error.required">{{mailerror}}</span>
+                <!-- {{mailError}} is binded dynamically and is changed in the mailChange() function and it displays the dynamically set error. -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm4-style">
+                <b>Office</b>
+            </div>
+            <div class="col-md-6 col-sm8-style">
+                <select name="office" ng-change="offChange()" ng-model="officemodel" class="inputStyle"
+                    required>
+                    <option value="BRA">BRA</option>
+                    <option value="EDIC">EDIC</option>
+                    <option value="UNION">UNION</option>
+                </select>
+                <!-- ng-change="offChange()" checks if there is a change in the input field and calls the offChange() function. -->
+            </div>
+            <div class="col-md-3">
+                <span style="color: red" ng-show="LeaveForm.office.$error.required">Select Office!!!</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm4-style">
+                <b>Department</b>
+            </div>
+            <div class="col-md-6 col-sm8-style">
+                <select name="department" class="inputStyle" ng-model="deptmodel" ng-options="dept.value as dept.option for dept in depts" required>
+                </select>
+                <!-- ng-options="dept.value as dept.option for dept in depts" dynamically changes the options of this dropdown depending upon the value of the Office -->
+            </div>
+            <div class="col-md-3">
+                <span style="color: red" ng-show="LeaveForm.department.$error.required">Select Department!!!</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm4-style">
+                <b>Location</b>
+            </div>
+            <div class="col-md-6 col-sm8-style">
+                <input type="text" class="inputStyle" name="location" placeholder="Boston" ng-model="locModel" required />
+            </div>
+            <div class="col-md-3">
+                <span style="color: red" ng-show="LeaveForm.location.$error.required">Enter Location!!!</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm4-style">
+                <b>Telephone / Extension</b>
+            </div>
+            <div class="col-md-6 col-sm8-style">
+                <input type="text" ng-change="teleChange()" class="inputStyle" name="telephone" ng-model="teleModel"
+                    placeholder="1234567890" maxlength="10" required />
+            </div>
+            <div class="col-md-3">
+                <span style="color: red" ng-show="LeaveForm.telephone.$error.required"> Enter Telephone Number!!! </span>
+                <span style="color: red" ng-hide="LeaveForm.telephone.$error.required"> {{teleError}} </span>
+            </div>
+        </div><br /><hr />
+        <div class="row">
+        <div class="col-md-1">
+                <b>Type: </b>
+            </div>
+            <div class="col-md-2">
+                <input name="leaveType" type="radio" ng-model="typeModel" ng-change="typeChange()" value="vacation" required />
+                <b>Vacation</b>
+            </div>
+            <div class="col-md-2">
+                <input name="leaveType" type="radio" ng-model="typeModel" value="personal" ng-change="typeChange()" required />
+                <b>Personal</b>
+            </div>
+            <div class="col-md-2">
+                <input name="leaveType" type="radio" ng-model="typeModel" value="sick" ng-change="typeChange()" required />
+                <b>Sick</b>
+            </div>
+            <div class="col-md-2">
+                <input name="leaveType" type="radio" ng-model="typeModel" value="other" ng-change="typeChange()" required />
+                <b>Other</b>
+            </div>
+            <div class="col-md-3">
+                <span ng-show="dates.length<=0"><span style="color: red" ng-show="LeaveForm.leaveType.$error.required">
+                Select a Leave Type !!! </span></span>
+            </div>
+        </div>
+        <div class="row" ng-show="typeModel == 'other'">
+        <!-- ng-show="typeModel == 'other'" - if the leave type selected is Other then we this explain box pops up. -->
+            <div class="col-md-3 col-sm4-style">
+                <b>If Other, Please explain</b>
+            </div>
+            <div class="col-sm-6 col-sm8-style">
+                <input type="text" ng-model="expModel" ng-change="typeChange()" class="inputStyle" name="explain" required />
+            </div>
+            <div class="col-sm-3">
+                <span style="color: red" ng-show="LeaveForm.explain.$error.required"> Please Explain !!! </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <b>Leave Beginning : </b>
+                <input type="datetime-local" name="begin" ng-change="dateChange()" ng-model="beginModel"
+                    required />
+            </div>
+            <div class="col-md-4">
+                <b>Leave Ending : </b>
+                <input type="datetime-local" name="end" ng-change="dateChange()" ng-model="endModel"
+                    required />
+            </div>
+            <!-- ng-change="dateChange()" checks the dates entered and checks if the end date is after the begin date or not -->
+            <div class="col-md-1">
+                <button class="btn btn-success pad" 
+                ng-disabled="LeaveForm.begin.$error.required || 
+                LeaveForm.end.$error.required || 
+                LeaveForm.leaveType.$error.required || 
+                dateDisabled || 
+                expError"
+                ng-model="addModel" ng-click="addClick()" name="dateAdd" formnovalidate>
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+                <!-- The button to add a leave entry is disabled until a leave type is selected, if leave type is "other"
+                    then until explain box is filled, both the dates are entered and end date is after
+                    the begin date -->
+            </div>
+            <div class="col-md-3 pad">
+                <span ng-show="dates.length<=0"><span style="color: red" ng-show="LeaveForm.begin.$error.required || LeaveForm.end.$error.required">
+                    Enter Both the Dates!!!</span></span> <span style="color: red" ng-hide="LeaveForm.begin.$error.required || LeaveForm.end.$error.required">
+                        {{dateError}}</span>
+            </div>
+        </div>
+        <div ng-show="dates.length>0">
+            <br />
+            <div class="row">
+                <div class="col-md-2 col-sm4-style">
+                    <b>Leave Type</b>
+                </div>
+                <div class="col-md-3 col-sm4-style">
+                    <b>Leave Beginning</b>
+                </div>
+                <div class="col-md-3 col-sm4-style">
+                    <b>Leave Ending</b>
+                </div>
+                <div class="col-md-2 col-sm4-style">
+                    <b>Total</b>
+                </div>
+                <div class="col-md-2 col-sm4-style">
+                </div>
+            </div>
+            <!-- Upon clicking the add button, the leave type, explaination, begin date and end date are added to an array and displayed in a grid format as below. -->
+            <div class="row" ng-repeat="x in dates">
+                <div class="col-md-2 col-sm8-style">
+                    {{x.type}}
+                </div>
+                <div class="col-md-3 col-sm8-style">
+                    {{x.beginDate}}
+                </div>
+                <div class="col-md-3 col-sm8-style">
+                    {{x.endDate}}
+                </div>
+                <div class="col-md-2 col-sm8-style">
+                    <b>{{x.total}}</b>
+                </div>
+                <div class="col-md-2 col-sm8-style">
+                    <button class="btn btn-warning" ng-click="editClick($index)" formnovalidate>
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
+                    <button class="btn btn-danger" ng-click="removeClick($index)" formnovalidate>
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-hide="dates.length>0">
+            <span style="color: red">Add atleast 1 entry of leave !!!</span>
+        </div>
+        <!-- If the vacation leave is more than a week, an option pops up for selecting request for advanced pay -->
+        <div class="row" ng-show="advancePay">
+            <div class="col-md-3">
+                    <b>Request Advance Pay: </b>
+            </div>
+            <div class="col-md-3">
+                <input name="advPay" type="radio" ng-change="payChange()" ng-model="advModel" value="yes" required />
+                <b>Yes</b>
+            </div>
+            <div class="col-md-3">
+                <input name="advPay" type="radio" ng-change="payChange()" ng-model="advModel" value="no" required />
+                <b>No</b>
+            </div>
+            <div class="col-md-3">
+                <span style="color: red" ng-show="LeaveForm.advPay.$error.required"> Select if you need Advanced Pay or not !!! </span>
+            </div>
+        </div>
+
+        <br />
+        <div class="row">
+            <button ng-model="submitModel" class="btn btn-success" 
+            ng-disabled="LeaveForm.empname.$error.required || 
+            LeaveForm.emailname.$error.required || 
+            (mailerror=='Invalid Email Address!!!') || 
+            LeaveForm.office.$error.required || 
+            LeaveForm.department.$error.required || 
+            LeaveForm.location.$error.required || 
+            LeaveForm.telephone.$error.required || 
+            (teleError=='Enter Only Numbers!!!') || 
+            SubmitPay || 
+            dates.length<=0"
+                ng-click="submitClick()">
+                <h4>
+                    <b>Submit <span class="glyphicon glyphicon-ok"></span></b>
+                </h4>
+            </button>
+            <!-- The submit button will remain disabled untill all the fields are entered "without any errors". -->
+        </div>
+        </form>
+    </div>
+    <div class="container">
+        <b>HTML Code Snippet : </b>
+        <br />
+        <pre>
+&lt;div class="col-md-3 pad"&gt;
+    &lt;span ng-show="dates.length<=0"&gt;&lt;span style="color: red" 
+    ng-show="LeaveForm.begin.$error.required || LeaveForm.end.$error.required"&gt;
+    Enter Both the Dates!!!&lt;/span&gt;&lt;/span&gt;
+    &lt;span style="color: red" 
+    ng-hide="LeaveForm.begin.$error.required || LeaveForm.end.$error.required"&gt;
+    {{dateError}}&lt;/span&gt;
+&lt;/div&gt;
+        </pre>
+        <br />
+        <br />
+        <hr />
+        <b>JavaScript Code Snippet : </b>
+        <br />
+        <pre>
+    $scope.removeClick = function (x) {
+        $scope.dates.splice(x, 1);
+        var sum = 0;
+        for (i = 0; i < $scope.dates.length; i++) {
+            if ($scope.dates[i].type == "vacation") {
+                sum = sum + ($scope.dates[i].date2 - $scope.dates[i].date1);
+                console.log(sum);
+            }
+        }
+        if (sum >= 604800000) {
+            $scope.advancePay = true;
+            if (!$scope.advModel) {
+                console.log("no option selected");
+                $scope.SubmitPay = true;
+            }
+            else {
+                console.log("option selected");
+                $scope.SubmitPay = false;
+            }
+        }
+        else {
+            $scope.advancePay = false;
+            $scope.SubmitPay = true;
+            $scope.advModel = null;
+        }
+    }
+        </pre>
+        <br />
+        <br />
+        <hr />
+        <b>About the Experiment : </b>
+        <br />
+        <pre>
+        <p>
+            This experiment is a leave request form. The fields are dynamically validated. The Submit button is disabled until all the elements are entered correctly.
+        </p>
+        </pre>
+        <br />
+        <hr />
+        <b>Source Code : </b><a href="http://net4.ccs.neu.edu/home/neelesh/fileview/Default.aspx?~/experiments/week07/leave request 4.html"> Code</a>
+        <br />
+        <br />
+        <hr />
+        <b>References</b> : <a href="http://www.w3schools.com">W3Schools</a>
+        <br />
+        <br />
+    </div>
+</body>
+</html>

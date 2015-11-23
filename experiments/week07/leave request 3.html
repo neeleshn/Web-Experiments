@@ -1,0 +1,217 @@
+<html>
+<head>
+    <title>Leave Request Form</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/LeaveCSS.css" />
+    <script src="js/angular.min.js"></script>
+    <script src="js/LeaveCtrl.js"></script>
+    <script src="js/LeaveApp.js"></script>
+</head>
+<body>
+    <div class="container jumbotron" ng-app="LeaveApp" ng-controller="LeaveCtrl">
+        <h1>
+            Leave Request Form</h1>
+        <form name="LeaveForm" novalidate>
+        <div class="row">
+            <div class="col-md-3 col-sm4-style">
+                <b>Name </b>
+            </div>
+            <div class="col-md-6 col-sm8-style">
+                <input type="text" class="inputStyle" name="empname" ng-model="empmodel" placeholder="FirstName LastName" required />
+            </div>
+            <div class="col-md-3">
+                <span style="color: red" ng-show="LeaveForm.empname.$error.required">Enter Name!!!</span>
+            </div>
+            <!-- ng-show="LeaveForm.empname.$error.required" checks if the input field is blank and shows this instruction. -->
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm4-style">
+                <b>Email</b>
+            </div>
+            <div class="col-md-6 col-sm8-style">
+                <input name="emailname" type="text" class="inputStyle" ng-model="emailmodel" ng-change="mailChange()"
+                    placeholder="first.last@boston.gov or first.m.last@boston.gov" required />
+                <!-- ng-change="mailChange()" checks if there is a change in the input field and calls the mailChange() function. -->
+            </div>
+            <div class="col-md-3">
+                <span style="color: red" ng-show="LeaveForm.emailname.$error.required">Enter Email Address!!!</span>
+                <span style="color: red" ng-hide="LeaveForm.emailname.$error.required">{{mailerror}}</span>
+                <!-- {{mailError}} is binded dynamically and is changed in the mailChange() function and it displays the dynamically set error. -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm4-style">
+                <b>Office</b>
+            </div>
+            <div class="col-md-6 col-sm8-style">
+                <select name="office" ng-change="offChange()" ng-model="officemodel" class="inputStyle"
+                    required>
+                    <option value="BRA">BRA</option>
+                    <option value="EDIC">EDIC</option>
+                    <option value="UNION">UNION</option>
+                </select>
+                <!-- ng-change="offChange()" checks if there is a change in the input field and calls the offChange() function. -->
+            </div>
+            <div class="col-md-3">
+                <span style="color: red" ng-show="LeaveForm.office.$error.required">Select Office!!!</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm4-style">
+                <b>Department</b>
+            </div>
+            <div class="col-md-6 col-sm8-style">
+                <select name="department" class="inputStyle" ng-model="deptmodel" ng-options="dept.value as dept.option for dept in depts" required>
+                </select>
+                <!-- ng-options="dept.value as dept.option for dept in depts" dynamically changes the options of this dropdown depending upon the value of the Office -->
+            </div>
+            <div class="col-md-3">
+                <span style="color: red" ng-show="LeaveForm.department.$error.required">Select Department!!!</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm4-style">
+                <b>Location</b>
+            </div>
+            <div class="col-md-6 col-sm8-style">
+                <input type="text" class="inputStyle" name="location" placeholder="Boston" ng-model="locModel" required />
+            </div>
+            <div class="col-md-3">
+                <span style="color: red" ng-show="LeaveForm.location.$error.required">Enter Location!!!</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm4-style">
+                <b>Telephone / Extension</b>
+            </div>
+            <div class="col-md-6 col-sm8-style">
+                <input type="text" ng-change="teleChange()" class="inputStyle" name="telephone" ng-model="teleModel"
+                    placeholder="1234567890" maxlength="10" required />
+            </div>
+            <div class="col-md-3">
+                <span style="color: red" ng-show="LeaveForm.telephone.$error.required"> Enter Telephone Number!!! </span>
+                <span style="color: red" ng-hide="LeaveForm.telephone.$error.required"> {{teleError}} </span>
+            </div>
+        </div><br /><hr />
+        <div class="row">
+        <div class="col-md-1">
+                <b>Type: </b>
+            </div>
+            <div class="col-md-2">
+                <input name="leaveType" type="radio" ng-model="typeModel" ng-change="typeChange()" value="vacation" required />
+                <b>Vacation</b>
+            </div>
+            <div class="col-md-2">
+                <input name="leaveType" type="radio" ng-model="typeModel" value="personal" ng-change="typeChange()" required />
+                <b>Personal</b>
+            </div>
+            <div class="col-md-2">
+                <input name="leaveType" type="radio" ng-model="typeModel" value="sick" ng-change="typeChange()" required />
+                <b>Sick</b>
+            </div>
+            <div class="col-md-2">
+                <input name="leaveType" type="radio" ng-model="typeModel" value="other" ng-change="typeChange()" required />
+                <b>Other</b>
+            </div>
+            <div class="col-md-3">
+                <span ng-show="dates.length<=0"><span style="color: red" ng-show="LeaveForm.leaveType.$error.required">
+                Select a Leave Type !!! </span></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <b>Leave Beginning : </b>
+                <input type="datetime-local" name="begin" ng-change="dateChange()" ng-model="beginModel"
+                    required />
+            </div>
+            <div class="col-md-4">
+                <b>Leave Ending : </b>
+                <input type="datetime-local" name="end" ng-change="dateChange()" ng-model="endModel"
+                    required />
+            </div>
+            <div class="col-md-4 pad">
+                <span style="color: red" ng-show="LeaveForm.begin.$error.required || LeaveForm.end.$error.required">
+                    Enter Both the Dates!!!</span>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <button ng-model="submitModel" class="btn btn-success" 
+            ng-disabled="LeaveForm.empname.$error.required || 
+            LeaveForm.emailname.$error.required || 
+            (mailerror=='Invalid Email Address!!!') || 
+            LeaveForm.office.$error.required || 
+            LeaveForm.department.$error.required || 
+            LeaveForm.location.$error.required || 
+            LeaveForm.telephone.$error.required || 
+            (teleError=='Enter Only Numbers!!!')">
+                <h4>
+                    <b>Submit <span class="glyphicon glyphicon-ok"></span></b>
+                </h4>
+            </button>
+            <!-- The submit button will remain disabled untill all the fields are entered "without any errors". -->
+        </div>
+        <br />
+        </form>
+    </div>
+    <div class="container">
+        <b>HTML Code Snippet : </b>
+        <br />
+        <pre>
+&lt;button ng-model="submitModel" class="btn btn-success" 
+ng-disabled="LeaveForm.empname.$error.required || 
+LeaveForm.emailname.$error.required || 
+(mailerror=='Invalid Email Address!!!') || 
+LeaveForm.office.$error.required || 
+LeaveForm.department.$error.required || 
+LeaveForm.location.$error.required || 
+LeaveForm.telephone.$error.required || 
+(teleError=='Enter Only Numbers!!!')"&gt;
+Submit &lt;/button&gt;
+        </pre>
+        <br />
+        <br />
+        <hr />
+        <b>JavaScript Code Snippet : </b>
+        <br />
+        <pre>
+    $scope.teleChange = function () { 
+        var testTele = /^([0-9])+$/;
+        if (!(testTele.test($scope.teleModel)))
+            $scope.teleError = "Enter Only Numbers!!!";
+        else $scope.teleError = "";
+    }
+
+    $scope.typeChange = function () { 
+        if ($scope.typeModel == "other") {
+            if (!$scope.expModel) {
+                $scope.expError = true;
+            }
+            else $scope.expError = false;
+        }
+        else $scope.expError = false;
+    }
+        </pre>
+        <br />
+        <br />
+        <hr />
+        <b>About the Experiment : </b>
+        <br />
+        <pre>
+        <p>
+            This experiment is a leave request form. The fields are dynamically validated. The Submit button is disabled until all the elements are entered correctly.
+        </p>
+        </pre>
+        <br />
+        <hr />
+        <b>Source Code : </b><a href="http://net4.ccs.neu.edu/home/neelesh/fileview/Default.aspx?~/experiments/week07/leave request 3.html">
+            Code</a>
+        <br />
+        <br />
+        <hr />
+        <b>References</b> : <a href="http://www.w3schools.com">W3Schools</a>
+        <br />
+        <br />
+    </div>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<html>
+<head>
+<title>Week 05 Experiments</title>
+<link rel="stylesheet" href="../../css/week03/bootstrap-3.3.2-dist/css/bootstrap.min.css"/>
+<script src="../../css/week05/angular.min.js"></script>
+</head>
+
+<body>
+<br />
+<h2>Filter Data in a Table</h2>
+<br />
+<div class="container jumbotron" ng-app="myapp" ng-controller="namesctrl">
+<table class="table table-striped">
+<thead>
+<tr>
+<td><h3> Search First Name : </h3></td><td><h3> Search Last Name : </h3></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <input type="text" ng-change="fnamechange()" ng-model="fnamesearch" /> </td>
+<td> <input type="text" ng-change="lnamechange()" ng-model="lnamesearch" /> </td>
+</tr>
+<tr ng-repeat="x in names">
+<td>{{x.fname}}</td><td>{{x.lname}}</td>
+</tr>
+</tbody>
+</table>
+</div>
+<script>
+function namesfn($scope) {
+    var names = [{fname: "Neelesh",lname: "Nidadhavolu" },
+                 {fname: "Neelesh1",lname: "Neelesh2"},
+                 {fname: "Nidadhavolu1",lname: "Nidadhavolu2"},
+                 {fname: "Nidadhavolu",lname: "Neelesh"},
+                 {fname: "Neelesh1",lname: "Nidadhavolu1"},
+                 {fname: "Nidadhavolu1",lname: "Neelesh1"}];
+
+        $scope.names = names;
+        $scope.fnamechange = function () {
+            var filternames = [];
+            for (i = 0; i < names.length; i++) {
+                var matchname = names[i].fname.substring(0, $scope.fnamesearch.length);
+                if (matchname.toLowerCase() == $scope.fnamesearch.toLowerCase()) {
+                    filternames.push(names[i]);
+                }
+            }
+            $scope.names = filternames;
+        }
+
+        $scope.lnamechange = function () {
+            var filternames = [];
+            for (i = 0; i < names.length; i++) {
+                var matchname = names[i].lname.substring(0, $scope.lnamesearch.length);
+                if (matchname.toLowerCase() == $scope.lnamesearch.toLowerCase()) {
+                    filternames.push(names[i]);
+                }
+            }
+            $scope.names = filternames;
+        }
+    }
+angular.module('myapp', []).controller('namesctrl', namesfn)
+</script>
+
+<br /><hr />
+<div class="container">
+<b> HTML Code Snippet : </b><br />
+<pre>
+&lt;tr&gt;
+&lt;td&gt; &lt;input type="text" ng-change="fnamechange()" ng-model="fnamesearch" /&gt; &lt;/td&gt;
+&lt;td&gt; &lt;input type="text" ng-change="lnamechange()" ng-model="lnamesearch" /&gt; &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr ng-repeat="x in names"&gt;
+&lt;td&gt;{{x.fname}}&lt;/td&gt;&lt;td&gt;{{x.lname}}&lt;/td&gt;
+&lt;/tr&gt;
+</pre>
+<br /><br /><hr />
+<b> JavaScript Code Snippet : </b><br />
+<pre>
+var names = [{fname: "Neelesh",lname: "Nidadhavolu" },
+             {fname: "Neelesh1",lname: "Neelesh2"},
+             {fname: "Nidadhavolu1",lname: "Nidadhavolu2"},
+             {fname: "Nidadhavolu",lname: "Neelesh"},
+             {fname: "Neelesh1",lname: "Nidadhavolu1"},
+             {fname: "Nidadhavolu1",lname: "Neelesh1"}];
+
+    $scope.names = names;
+
+    $scope.fnamechange = function () {
+        var filternames = [];
+        for (i = 0; i < names.length; i++) {
+            var matchname = names[i].fname.substring(0, $scope.fnamesearch.length);
+            if (matchname.toLowerCase() == $scope.fnamesearch.toLowerCase()) {
+                filternames.push(names[i]);
+            }
+        }
+        $scope.names = filternames;
+    }
+</pre>
+<br /><br /><hr />
+<b> About the Experiment : </b><br />
+<pre>
+<p>
+This experiment is about filter multiple columns in a table. Upon searching for a first name we used <b>ng-change=</b> to call a function fnamechange() and similarly for last name. In that function we compare the dynamic input text with the elements in the array.
+</p>
+</pre>
+<br /><hr />
+<b>Source Code : </b>
+<a href="http://net4.ccs.neu.edu/home/neelesh/fileview/Default.aspx?~/experiments/week05/multifilter.html">Code</a>
+<br /><br /><hr />
+<b>References</b> :  
+<a href="http://www.w3schools.com/">W3Schools</a>
+<br />
+<br />
+</div>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<html>
+<head>
+    <title>Week 05 Experiments</title>
+    <link rel="stylesheet" href="../../css/week03/bootstrap-3.3.2-dist/css/bootstrap.min.css" />
+    <script src="../../css/week05/angular.min.js"></script>
+</head>
+<body>
+    <div class="container jumbotron" ng-app="myapp" ng-controller="ctrl123">
+        <br />
+        <h2>
+            Argentina World Cup 2014 Matches and Results</h2>
+        <br />
+        <table class="table table-striped">
+            <tr>
+                <th>
+                    Home Team
+                </th>
+                <th>
+                    Away Team
+                </th>
+                <th>
+                    Winner
+                </th>
+            </tr>
+            <tr ng-repeat="x in teams">
+                <td>
+                    {{x.home_team.country}}
+                </td>
+                <td>
+                    {{x.away_team.country}}
+                </td>
+                <td>
+                    {{x.winner}}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        function ctrlfn($scope, $http) {
+            $http.get("http://worldcup.sfg.io/matches/country?fifa_code=ARG")
+            .success(function (response) {
+                $scope.teams = response;
+            })
+        }
+        angular.module('myapp', []).controller("ctrl123", ctrlfn);
+    </script>
+    <div class="container">
+        <b>HTML Code Snippet : </b>
+        <br />
+        <pre>
+            &lt;tr ng-repeat="x in teams"&gt;
+                &lt;td&gt;
+                    {{x.home_team.country}}
+                &lt;/td&gt;
+                &lt;td&gt;
+                    {{x.away_team.country}}
+                &lt;/td&gt;
+                &lt;td&gt;
+                    {{x.winner}}
+                &lt;/td&gt;
+            &lt;/tr&gt;
+        </pre>
+        <br />
+        <br />
+        <hr />
+        <b>JavaScript Code Snippet : </b>
+        <br />
+        <pre>
+        function ctrlfn($scope, $http) {
+            $http.get("http://worldcup.sfg.io/matches/country?fifa_code=ARG")
+            .success(function (response) {
+                $scope.teams = response;
+            })
+        }
+        </pre>
+        <br />
+        <br />
+        <hr />
+        <b>About the Experiment : </b>
+        <br />
+        <pre>
+        <p>
+            This experiment is about displaying data from an API. I used an API of FIFA Worldcup 2014.
+        </p>
+        </pre>
+        <br />
+        <hr />
+        <b>Source Code : </b><a href="http://net4.ccs.neu.edu/home/neelesh/fileview/Default.aspx?~/experiments/week06/bind.html">
+            Code</a>
+        <br />
+        <br />
+        <hr />
+        <b>References</b> : <a href="http://www.w3schools.com">W3Schools</a>
+        <br />
+        <br />
+    </div>
+</body>
+</html>

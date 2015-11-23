@@ -1,0 +1,6 @@
+../../story/whatisnext.htm?../experiments/week05/week05.txt                             WEEK 05 - Intro to AngularJS
+bind.html                                                	Binding Dynamic Input
+filter.html                                                 Filtering a List of Items
+diffbtn.html                                              	Identifying the Button Clicked
+selection.html                                              Select and Drop Courses
+multifilter.html                                            Filtering Data in a Table

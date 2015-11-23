@@ -1,0 +1,64 @@
+<html>
+<head>
+    <title>Week 08 Experiments</title>
+    <link rel="stylesheet" href="../../css/week03/bootstrap-3.3.2-dist/css/bootstrap.min.css" />
+    <script src="../../css/week05/angular.min.js"></script>
+    <script src="../../css/week05/angular-route.js"></script>
+    <script src="js/AppConfig.js"></script>
+    <script src="js/LoginCtrl.js"></script>
+    <script src="js/ProfCtrl.js"></script>
+    <script src="js/UserService.js"></script>
+</head>
+<body>
+    <div class="container jumbotron">
+        <form name="myform" ng-app="LoginApp" novalidate>
+        <h2>
+            Form Input Validations</h2>
+        <br />
+        <div class="container jumbotron" ng-controller="LoginCtrl">
+            <div class="row" ng-hide="user">
+                <div class="col-md-3">
+                    &nbsp;</div>
+                <div class="col-md-4">
+                    Email :
+                    <input name="emailname" type="email" ng-model="emailmodel" required /><br />
+                    <span style="color: red" ng-show="myform.emailname.$error.required">Enter Email Address
+                        !!!</span> <span style="color: red" ng-show="myform.emailname.$error.email">Invalid
+                            Email Address !!!</span>
+                </div>
+                <div class="col-md-4">
+                    Password :
+                    <input name="passname" type="password" ng-model="passmodel" required /><br />
+                    <span style="color: red" ng-show="myform.passname.$error.required">Enter Password !!!</span>
+                </div>
+                <div class="col-md-1">
+                    <input type="submit" ng-click="validate()" value="Login" ng-disabled="myform.emailname.$error.email || myform.emailname.$error.required || myform.passname.$error.required" />
+                    <br />
+                    <span style="color: red" ng-show="myform.emailname.$error.email || myform.emailname.$error.required || myform.passname.$error.required">
+                        Disabled</span>
+                </div>
+            </div>
+            <div class="row" ng-show="user">
+                <div class="col-md-3">
+                    &nbsp;</div>
+                <div class="col-md-4">
+                    &nbsp;</div>
+                <div class="col-md-4">
+                    &nbsp;</div>
+                <div class="col-md-1">
+                    <input type="submit" ng-click="logoutFn()" value="Logout" /><br />
+                </div>
+            </div>
+            <h3>
+                <nav>
+                    <a href="#/home">Home</a> |
+                    <span ng-show="user"><a href="#/profile/{{user.name}}">profile</a></span>
+                </nav>
+            </h3>
+        </div>
+        <div ng-view>
+        </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<html>
+<head>
+<title>Week 02 Experiments</title>
+<link rel="stylesheet" href="../../css/week03/bootstrap-3.3.2-dist/css/bootstrap.min.css"/>
+<script src="../../css/week05/angular.min.js"></script>
+</head>
+<body>
+<div class="container jumbotron" ng-app="" ng-init="names=['abcd','defg','ghij','jklm','mnop','pqrs']">
+<br /><h2>Filtering a List of Items</h2><br />
+ 	<p>Name: <input type="text" ng-model="name"></p>
+    <ul>
+    <li ng-repeat= "n in names | filter : name" >
+    <h4>{{n}}</h4>
+    </li></ul>
+</div>
+<br /><hr />
+<div class="container">
+<b> HTML Code Snippet : </b><br />
+<pre>
+    &lt;p&gt;Name: &lt;input type="text" ng-model="name"&gt;&lt;/p&gt;
+    &lt;ul&gt;
+    &lt;li ng-repeat= "n in names | filter : name" &gt;
+    &lt;h4&gt;{{n}}&lt;/h4&gt;
+</pre>
+<br /><br /><hr />
+<b> About the Experiment : </b><br />
+<pre>
+<p>
+This Experiment is about iterating among a list of elements and filtering as per the dynamic input entered. For iterating among the list of items we use <b>ng-repeat</b> and to filter among those list of items we use <b> | filter : </b>.
+</p>
+</pre>
+<br /><hr />
+<b>Source Code : </b>
+<a href="http://net4.ccs.neu.edu/home/neelesh/fileview/Default.aspx?~/experiments/week05/filter.html">Code</a>
+<br /><br /><hr />
+
+<b>References</b> :  
+<a href="http://www.w3schools.com/">W3Schools</a>
+<br />
+<br />
+</div>
+</body>
+</html>

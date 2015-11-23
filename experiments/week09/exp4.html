@@ -1,0 +1,47 @@
+<html>
+<head>
+    <title>Week 08 Experiments</title>
+    <link rel="stylesheet" href="../../css/week03/bootstrap-3.3.2-dist/css/bootstrap.min.css" />
+    <script src="../../css/week05/angular.min.js"></script>
+</head>
+<body>
+    <div class="container jumbotron">
+        <h2>Red Line Stops</h2>
+        <br /><br />
+        <a href="http://neeleshnweek09-testweek09.rhcloud.com/ex3" target="_blank">Red Line Stops</a>
+        <br /><br />
+    </div>
+    <div class="container">
+        <b>JavaScript Code Snippet : </b>
+        <br />
+<pre>
+function ctrlfn($scope, $http) {
+    $http.get("http://realtime.mbta.com/developer/api/v2/stopsbyroute?api_key=wX9NwuHnZU2ToO7GmGR9uw&route=931_&format=json")
+    .success(function (response) {
+        $scope.stops = response.direction[0].stop;
+    })
+}
+</pre>
+        <br />
+        <br />
+        <hr />
+        <b>About the Experiment : </b>
+        <br />
+        <pre>
+        <p>
+            This experiment find out the stops on Red Line using MBTA API
+        </p>
+        </pre>
+        <br />
+        <hr />
+        <b>Source Code : </b><a href="http://net4.ccs.neu.edu/home/neelesh/fileview/Default.aspx?~/experiments/week09/exp4.html">
+            Code</a>
+        <br />
+        <br />
+        <hr />
+        <b>References</b> : <a href="https://graph.facebook.com/">MBTA API</a>
+        <br />
+        <br />
+    </div>
+</body>
+</html>

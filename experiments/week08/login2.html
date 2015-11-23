@@ -1,0 +1,78 @@
+<html>
+<head>
+    <title>Week 08 Experiments</title>
+    <link rel="stylesheet" href="../../css/week03/bootstrap-3.3.2-dist/css/bootstrap.min.css" />
+    <script src="../../css/week05/angular.min.js"></script>
+</head>
+<body>
+    <div class="container jumbotron">
+        <form name="myform" ng-app="LoginApp" ng-controller="LoginCtrl" novalidate>
+        <h2>
+            Form Input Validations</h2>
+        <br />
+        <div class="row" ng-hide="name">
+            <div class="col-md-3">
+                &nbsp;</div>
+            <div class="col-md-4">
+                Email :
+                <input name="emailname" type="email" ng-model="emailmodel" required /><br />
+                <span style="color: red" ng-show="myform.emailname.$error.required">Enter Email Address
+                        !!!</span> <span style="color: red" ng-show="myform.emailname.$error.email">Invalid
+                            Email Address !!!</span>
+            </div>
+            <div class="col-md-4">
+                Password :
+                <input name="passname" type="password" ng-model="passmodel" required /><br />
+                <span style="color: red" ng-show="myform.passname.$error.required">Enter Password !!!</span>
+            </div>
+            <div class="col-md-1">
+                <input type="submit" ng-click="validate()" value="Login"
+                ng-disabled="myform.emailname.$error.email || myform.emailname.$error.required || myform.passname.$error.required" />
+                <br />
+                <span style="color: red" 
+                ng-show="myform.emailname.$error.email || myform.emailname.$error.required || myform.passname.$error.required">
+                Disabled</span>
+            </div>
+        </div>
+        <div class="row" ng-show="name">
+            <div class="col-md-3">&nbsp;</div>
+            <div class="col-md-4">&nbsp;</div>
+            <div class="col-md-4">&nbsp;</div>                
+            <div class="col-md-1">
+                <input type="submit" ng-click="logoutFn()" value="Logout"/><br />
+            </div>
+        </div>
+            <h1>
+                <center><span ng-show="name">Hello {{name}}</span></center>
+            </h1>
+        </form>        
+    </div>
+    <script>
+        function LoginFn($scope) {
+            var logins = [{ mail: "neelesh1@gmail.com", pass: "password" },
+                          { mail: "neelesh2@gmail.com", pass: "password" },
+                          { mail: "neelesh3@gmail.com", pass: "password" }];
+
+                          $scope.validate = function () {
+                              var flag = 0;
+                              for (var i = 0; i < logins.length; i++) {
+                                  if ($scope.emailmodel == logins[i].mail && $scope.passmodel == logins[i].pass) {
+                                      $scope.name = logins[i].mail;
+                                      flag = 1;
+                                  }
+                              }
+                              if (flag == 0)
+                                  $scope.name = "";
+                          }
+
+                          $scope.logoutFn = function () {
+                              $scope.name = null;
+                              $scope.passmodel = null;
+                              $scope.emailmodel = null;
+                          }
+
+        }
+        angular.module('LoginApp', []).controller("LoginCtrl", LoginFn);
+    </script>
+</body>
+</html>

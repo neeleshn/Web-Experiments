@@ -1,0 +1,58 @@
+<html>
+<head>
+<script>
+function ajaxfn() {
+    console.log("hello");
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () 
+    {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+            document.getElementById("text1").innerHTML = xmlhttp.responseText;
+    }
+    xmlhttp.open("GET", "w04ex05.txt", true);
+    xmlhttp.send();
+}
+</script>
+<link rel="stylesheet" href="../../css/week03/bootstrap-3.3.2-dist/css/bootstrap.min.css"/>
+<script src="../../css/week03/bootstrap-3.3.2-dist/js/bootstrap.min.js"></script>
+<script src="../../css/week03/bootstrap-3.3.2-dist/js/bootstrap.js"></script>
+<title>AJAX Experiment</title>
+</head>
+<body>
+<div class="container jumbotron">
+<div id="text1"><h2>Click the below button to change this</h2></div>
+<button type="button" onclick="ajaxfn()">Click Here</button>
+</div>
+<hr />
+<div class="container jumbotron">
+<b> HTML Code Snippet : </b><br />
+&lt;div id="Div1">&lt;h2&gt;Click the below button to change this&lt;/h2&gt;&lt;/div&gt;
+&lt;button type="button" onclick="ajaxfn()"&gt;Click Here&lt;/button&gt;
+<br /><br /><hr />
+<b> AJAX Code Snippet : </b><br />
+function ajaxfn() {<br />
+    console.log("hello");<br />
+    var xmlhttp = new XMLHttpRequest();<br />
+    xmlhttp.onreadystatechange = function () <br />
+    {<br />
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200)<br />
+            document.getElementById("text1").innerHTML = xmlhttp.responseText;<br />
+    }<br />
+    xmlhttp.open("GET", "w04ex05.txt", true);<br />
+    xmlhttp.send();<br />
+}<br /><br /><hr />
+<b> About the Experiment : </b><br />
+<p>This experiment is about dynamically changing the text in the HTML page on clicking a button using AJAX. We import text from a text file and display it in the HTML page dynamically without reloading the page using XMLHttpRequest.</p>
+<br /><hr />
+<b>Source Code : </b>
+<a href="http://net4.ccs.neu.edu/home/neelesh/fileview/Default.aspx?~/experiments/week04/ajax.html">HTML</a>
+<br /><br /><hr />
+
+<b>References</b> :  
+<a href="http://www.w3schools.com/html/default.asp">W3Schools</a>
+<br />
+<br />
+</div>
+</div>
+</body>
+</html>

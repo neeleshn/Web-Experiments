@@ -1,0 +1,39 @@
+<html>
+<head>
+    <title>Week 09 Experiments</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <script src="js/angular.min.js"></script>
+</head>
+<body>
+    <div class="container jumbotron" ng-app="myapp" ng-controller="ctrl123">
+        <br />
+        <h2>Latest Alert</h2>
+        <br />
+        <b> Header: </b> {{details.header_text}}<br />
+        <b> Description: </b> {{details.description_text}}<br />
+        <b> Severity: </b> {{details.severity}}<br />
+        <b> Affected Services: </b> 
+        <ul>
+            <li ng-repeat="x in details.affected_services.services">
+            <b>Mode : </b>{{x.mode_name}}, <b>Route : </b>{{x.route_name}}, <b>Stop : </b>{{x.stop_name}}
+            </li>
+            </li>
+        </ul>
+    </div>
+    <script>
+        function ctrlfn($scope, $http) {
+            $http.get("http://realtime.mbta.com/developer/api/v2/alertheaders?api_key=wX9NwuHnZU2ToO7GmGR9uw&format=json")
+            .success(function (response) {
+                var alert_id = response.alert_headers[0].alert_id;
+                $http.get("http://realtime.mbta.com/developer/api/v2/alertbyid?api_key=wX9NwuHnZU2ToO7GmGR9uw&id=" + alert_id + "&format=json")
+            .success(function (response) {
+
+                $scope.details = response;
+
+            })
+            })
+        }
+        angular.module('myapp', []).controller("ctrl123", ctrlfn);
+    </script>    
+</body>
+</html>

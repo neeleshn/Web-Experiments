@@ -1,0 +1,67 @@
+<html>
+<head>
+<title>Modal Window</title>
+<script src="../../css/week04/jquery-1.11.2.min.js"></script>
+<script src="../../css/week04/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="../../css/week03/bootstrap-3.3.2-dist/css/bootstrap.min.css"/>
+<script src="../../css/week03/bootstrap-3.3.2-dist/js/bootstrap.min.js"></script>
+<script src="../../css/week03/bootstrap-3.3.2-dist/js/bootstrap.js"></script>
+<script>
+    $(function () {
+        $(".list2").sortable({ axis: "y" });
+        $(".list2").disableSelection();
+    });
+</script>
+<style>
+.jumbotron
+{
+    min-height: 5px;
+    max-height: 10px;    
+    width:90%;
+    text-align:center;
+    background-color:Olive;
+    margin:inherit;
+    margin-left:5%;
+}
+.container
+{
+    text-align:center;
+    width:50%;
+    background-color:silver;
+}
+</style>
+</head>
+<body>
+<h1>These lists are sortable</h1>
+<ul class="list2 container">
+<h3><li class="jumbotron">List Item 1</li></h3>
+<h3><li class="jumbotron">List Item 2</li></h3>
+<h3><li class="jumbotron">List Item 3</li></h3>
+<h3><li class="jumbotron">List Item 4</li></h3>
+<h3><li class="jumbotron">List Item 5</li></h3>
+</ul>
+<hr />
+<div class="container">
+<b> HTML Code Snippet : </b><br />
+&lt;ul class="list2 container"&gt;<br />
+<br /><br /><hr />
+<b> jQuery Code Snippet : </b><br />
+    $(function () {<br />
+        $(".list2").sortable({ axis: "y" });<br />
+        $(".list2").disableSelection();<br />
+    });
+<br /><br /><hr />
+<b> About the Experiment : </b><br />
+<p>This experiment is about dragging the list items and sorting them using jQuery. We use sortable() function for that.</p>
+<br /><hr />
+<b>Source Code : </b>
+<a href="http://net4.ccs.neu.edu/home/neelesh/fileview/Default.aspx?~/experiments/week04/sortable.html">HTML</a>
+<br /><br /><hr />
+
+<b>References</b> :  
+<a href="http://www.w3schools.com/html/default.asp">W3Schools</a>
+<br />
+<br />
+</div>
+</body>
+</html>

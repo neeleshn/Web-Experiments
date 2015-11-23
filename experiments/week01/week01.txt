@@ -1,0 +1,6 @@
+../../story/whatisnext.htm?../experiments/week01/week01.txt                             WEEK 01 - HTML 5 Experiments
+static.html                                                        Static HTML 5 Tags
+inputs.html                                                     Input Fields In HTML
+anchor1.html                                                     Anchor Tags
+frames.html                                                     iFrame in Frameset
+images.html                                                     Map in Images

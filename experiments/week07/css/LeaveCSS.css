@@ -1,0 +1,39 @@
+.row {
+    padding:10px 10%;
+}
+
+.col-sm4-style {
+    background-color: black;
+    color: White;
+    height:40px;
+    padding:1%;
+    border-radius:5px;
+}
+
+.col-sm8-style 
+{
+    background-color: #cccccc;
+    height: 40px;
+    padding: 0.7% 2%;
+    border-radius:5px;
+}
+
+.inputStyle 
+{    
+    width:100%;
+}
+
+h1, h2, h3
+{
+    padding: 1% 10%;
+}
+
+h5
+{
+    padding: 50px 10% 0px;
+}
+
+.pad
+{
+    margin-top: 22px;
+}

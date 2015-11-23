@@ -1,0 +1,99 @@
+<html>
+<head>
+<title>Week 05 Experiments</title>
+<link rel="stylesheet" href="../../css/week03/bootstrap-3.3.2-dist/css/bootstrap.min.css"/>
+<script src="../../css/week05/angular.min.js"></script>
+<style>
+ul li {
+                padding: 20px 30px;
+                width: 30%;
+                height: 15%;
+                background-color: palegreen;
+                margin-bottom: 8px;
+                box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+            }
+
+ul li.active {
+                    background-color: lightcoral;
+                  }
+</style>
+</head>
+<body>
+<br /><br />
+<div class="container jumbotron" ng-app="myapp" ng-controller="coursesctrl" ng-init="courses=[{cn:'course1',cost:1000,active:false},{cn:'course2',cost:2000,active:false},{cn:'course3',cost:3000,active:false}]">
+<h2 class="h2">Select and Drop Courses</h2>
+<br />
+<ul>
+<li ng-class="{active:x.active}" ng-click="toggle(x)" ng-repeat="x in courses">
+<h2>{{ x.cn }} : ${{ x.cost }}</h2>
+</li>
+</ul>
+<h3> Total Cost : ${{ total() }}</h3>
+</div>
+<script>    
+    function coursesctrl($scope) {
+        $scope.toggle = function (s) {
+            s.active = !s.active;
+        };
+
+        $scope.total = function () {
+            var total = 0;
+            angular.forEach($scope.courses, function (s) {
+                if (s.active) {
+                    total += s.cost;
+                }
+            });
+            return total;
+        };
+    }
+    angular.module('myapp', []).controller('coursesctrl', coursesctrl)
+</script>
+
+<br /><hr />
+<div class="container">
+<b> HTML Code Snippet : </b><br />
+<pre>
+&lt;li ng-class="{active:x.active}" ng-click="toggle(x)" ng-repeat="x in courses"&gt;
+        {{ x.cn }} : ${{ x.cost }}
+&lt;/li&gt;
+        Total Cost : ${{ total() }}
+</pre>
+<br /><br /><hr />
+<b> JavaScript Code Snippet : </b><br />
+<pre>
+    function coursesctrl($scope) {
+        $scope.toggle = function (s) {
+            s.active = !s.active;
+        };
+
+        $scope.total = function () {
+            var total = 0;
+            angular.forEach($scope.courses, function (s) {
+                if (s.active) {
+                    total += s.cost;
+                }
+            });
+            return total;
+        };
+    }
+    angular.module('myapp', []).controller('coursesctrl', coursesctrl)
+</pre>
+<br /><br /><hr />
+<b> About the Experiment : </b><br />
+<pre>
+<p>
+This experiment is about selecting and dropping courses. We use toggle() function to identify the alternate clicks. ng-class is used to provide the CSS.
+</p>
+</pre>
+<br /><hr />
+<b>Source Code : </b>
+<a href="http://net4.ccs.neu.edu/home/neelesh/fileview/Default.aspx?~/experiments/week05/selection.html">Code</a>
+<br /><br /><hr />
+
+<b>References</b> :  
+<a href="http://www.w3schools.com">W3Schools</a>
+<br />
+<br />
+</div>
+</body>
+</html>

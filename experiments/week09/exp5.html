@@ -1,0 +1,62 @@
+<html>
+<head>
+    <title>Week 08 Experiments</title>
+    <link rel="stylesheet" href="../../css/week03/bootstrap-3.3.2-dist/css/bootstrap.min.css" />
+    <script src="../../css/week05/angular.min.js"></script>
+</head>
+<body>
+    <div class="container jumbotron">
+        <h2>Geo Location</h2>
+        <br /><br />
+        <a href="http://neeleshnweek09-testweek09.rhcloud.com/ex4" target="_blank">Find out your Location</a>
+        <br /><br />
+    </div>
+    <div class="container">
+        <b>JavaScript Code Snippet : </b>
+        <br />
+<pre>
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            var pos = new google.maps.LatLng(position.coords.latitude,
+                                position.coords.longitude);
+            console.log("Latitude = " + position.coords.latitude);
+            console.log("Longitude = " + position.coords.longitude);
+            console.log("Pos = " + pos);
+            var infowindow = new google.maps.InfoWindow({
+                map: map,
+                position: pos,
+                content: 'Location found using HTML5.'
+            });
+
+            map.setCenter(pos);
+        }, function () {
+            handleNoGeolocation(true);
+        });
+    } else {
+        // Browser doesn't support Geolocation
+        handleNoGeolocation(false);
+    }
+</pre>
+        <br />
+        <br />
+        <hr />
+        <b>About the Experiment : </b>
+        <br />
+        <pre>
+        <p>
+            This experiment about logging into Facebook in Node.js platform.
+        </p>
+        </pre>
+        <br />
+        <hr />
+        <b>Source Code : </b><a href="http://net4.ccs.neu.edu/home/neelesh/fileview/Default.aspx?~/experiments/week09/exp5.html">
+            Code</a>
+        <br />
+        <br />
+        <hr />
+        <b>References</b> : <a href="https://graph.facebook.com/">Google Maps API</a>
+        <br />
+        <br />
+    </div>
+</body>
+</html>

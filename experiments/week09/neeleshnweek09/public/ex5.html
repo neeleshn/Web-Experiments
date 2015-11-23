@@ -1,0 +1,68 @@
+<html>
+<head>
+    <title>Week 09 Experiments</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <script src="js/angular.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+</head>
+<body>
+    <div class="container jumbotron" ng-app="myapp" ng-controller="ctrl123">
+        <br />
+        <h2>Your Nearest Station</h2>
+        <br />
+                <b>Name : </b>{{stops.parent_station_name}}<br />
+                <b>Distance : </b>{{stops.distance}} miles
+    </div>
+    <script>
+        function ctrlfn($scope, $http) {
+
+            var map;
+            var lat;
+            var long;
+            google.maps.event.addDomListener(window, 'load', initialize);
+
+            function initialize() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                        var pos = new google.maps.LatLng(position.coords.latitude,
+                                           position.coords.longitude);
+                        lat = position.coords.latitude;
+                        long = position.coords.longitude;
+                        console.log("long = " + position.coords.longitude);
+                        console.log("lat = " + position.coords.latitude);
+                        getStations(long, lat);
+                    }, function () {
+                        handleNoGeolocation(true);
+                    });
+                }
+            }
+
+            function handleNoGeolocation(errorFlag) {
+                if (errorFlag) {
+                    var content = 'Error: The Geolocation service failed.';
+                } else {
+                    var content = 'Error: Your browser doesn\'t support geolocation.';
+                }
+
+                var options = {
+                    map: map,
+                    position: new google.maps.LatLng(60, 105),
+                    content: content
+                };
+
+                var infowindow = new google.maps.InfoWindow(options);
+                map.setCenter(options.position);
+            }
+
+            function getStations(long, lat) {
+                $http.get("http://realtime.mbta.com/developer/api/v2/stopsbylocation?api_key=wX9NwuHnZU2ToO7GmGR9uw&lat=" + lat + "&lon=" + long + "&format=json")
+            .success(function (response) {
+                $scope.stop = response.stop;
+                console.log(response.stop);
+            })
+            }
+        }
+        angular.module('myapp', []).controller("ctrl123", ctrlfn);
+    </script>    
+</body>
+</html>

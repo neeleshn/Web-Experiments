@@ -1,0 +1,48 @@
+<html>
+<head>
+    <title>Week 05 Experiments</title>
+    <link rel="stylesheet" href="../../css/week03/bootstrap-3.3.2-dist/css/bootstrap.min.css" />
+    <script src="../../css/week05/angular.min.js"></script>
+</head>
+<body>
+    <div class="container jumbotron">
+        <form name="myform" ng-app="myapp" ng-controller="ctrl123" novalidate>
+        <h2>Form Input Validations</h2><br />
+        <div class="row">
+            <div class="col-md-3">&nbsp;</div>
+            <div class="col-md-4">
+                Email : <input name="emailname" type="email" ng-model="emailmodel" required/>
+            </div>
+            <div class="col-md-4">
+                Password : <input name="passname" type="password" ng-model="passmodel" required/>
+            </div>
+            <div class="col-md-1">
+                <input type="submit" ng-disabled="myform.emailname.$error.email || myform.emailname.$error.required || myform.passname.$error.required" />
+            </div>
+        </div>
+        <div>
+            <div class="row">
+            <div class="col-md-3">&nbsp;</div>
+            <div class="col-md-4">
+                <span style="color:red" ng-show="myform.emailname.$error.required">Enter Email Address !!!</span>
+                <span style="color:red" ng-show="myform.emailname.$error.email">Invalid Email Address !!!</span>
+            </div>
+            <div class="col-md-4">
+                <span style="color:red" ng-show="myform.passname.$error.required">Enter Password !!!</span>
+            </div>
+            <div class="col-md-1">
+            <span style="color:red" ng-show="myform.emailname.$error.email || myform.emailname.$error.required || myform.passname.$error.required">Disabled</span>
+            </div>
+        </div>
+        
+        </form>
+    </div>
+    <script>
+        function ctrlfn($scope, $http) {
+            $scope.emailmodel = 'yahoomail@gmail.com';
+            $scope.passmodel = 'password';
+        }
+        angular.module('myapp', []).controller("ctrl123", ctrlfn);
+    </script>
+</body>
+</html>

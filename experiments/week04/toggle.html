@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>jQuery Toggle</title>
+<link rel="stylesheet" href="../../css/week03/bootstrap-3.3.2-dist/css/bootstrap.min.css"/>
+<script src="../../css/week03/bootstrap-3.3.2-dist/js/bootstrap.min.js"></script>
+<script src="../../css/week03/bootstrap-3.3.2-dist/js/bootstrap.js"></script>
+<script src="../../css/week04/jquery-1.11.2.min.js"></script>
+<script src="../../css/week04/jquery-ui.min.js"></script>
+<script src="../../css/week04/w04ex02.js"></script>
+<link rel="stylesheet" type="text/css" href="../../css/week04/w04ex02.css" />
+</head>
+<body>
+ 
+<div id="flip">Click here to slide me down</div>
+<div id="panel">Now slide me back</div>
+<hr />
+<div class="container jumbotron">
+<b> HTML Code Snippet : </b><br />
+&lt;div id="flip"&gt;Click here to slide me down&lt;/div&gt;<br />
+&lt;div id="panel"&gt;Now slide me back&lt;/div&gt;
+<br /><br /><hr />
+<b> jQuery Code Snippet : </b><br />
+$(init);<br />
+function init() {<br />
+    var flag=0;<br />
+    $("#flip").click(function () {<br />
+        $("#flip").text("Click here to slide me up");<br />
+        $("#panel").slideToggle("slow");<br />
+        if (flag == 0) <br />
+        {<br />
+            flag = 1;<br />
+            $("#flip").text("Click here to slide me Up");<br />
+        }<br />
+        else <br />
+        {<br />
+            flag = 0;<br />
+            $("#flip").text("Click here to slide me Down");<br />
+        }<br />
+    });<br />
+}<br /><br /><hr />
+<b> About the Experiment : </b><br />
+<p>This experiment is about dynamically hiding and sliding down some text. We use toggle function of jQuery to perform this action.</p>
+<br /><hr />
+<b>Source Code : </b>
+<a href="http://net4.ccs.neu.edu/home/neelesh/fileview/Default.aspx?~/experiments/week04/add.html">HTML</a>
+<a href="http://net4.ccs.neu.edu/home/neelesh/fileview/Default.aspx?~/css/week04/w04ex02.js">jQuery</a>
+<br /><br /><hr />
+
+<b>References</b> :  
+<a href="http://www.w3schools.com/html/default.asp">W3Schools</a>
+<br />
+<br />
+</div>
+</body>
+</html>

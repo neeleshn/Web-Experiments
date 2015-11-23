@@ -1,0 +1,1 @@
+This text is extracted from an external text file using AJAX

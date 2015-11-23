@@ -1,0 +1,164 @@
+<html>
+<head>
+    <title>Leave Request Form</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/LeaveCSS.css" />
+    <script src="js/angular.min.js"></script>
+    <script src="js/LeaveCtrl.js"></script>
+    <script src="js/LeaveApp.js"></script>
+</head>
+<body>
+    <div class="container jumbotron" ng-app="LeaveApp" ng-controller="LeaveCtrl">
+        <h1>
+            Leave Request Form</h1>
+        <form name="LeaveForm" novalidate>
+        <div class="row">
+            <div class="col-md-4 col-sm4-style">
+                <b>Name </b>
+            </div>
+            <div class="col-md-8 col-sm8-style">
+                <input type="text" class="inputStyle" name="empname" ng-model="empmodel" placeholder="FirstName LastName" required />
+            </div>            
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm4-style">
+                <b>Email</b>
+            </div>
+            <div class="col-md-8 col-sm8-style">
+                <input name="emailname" type="text" class="inputStyle" ng-model="emailmodel" ng-change="mailChange()"
+                    placeholder="first.last@boston.gov or first.m.last@boston.gov" required />                
+            </div>            
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm4-style">
+                <b>Office</b>
+            </div>
+            <div class="col-md-8 col-sm8-style">
+                <select name="office" ng-change="offChange()" ng-model="officemodel" class="inputStyle"
+                    required>
+                    <option value="BRA">BRA</option>
+                    <option value="EDIC">EDIC</option>
+                    <option value="UNION">UNION</option>
+                </select>
+            </div>            
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm4-style">
+                <b>Department</b>
+            </div>
+            <div class="col-md-8 col-sm8-style">
+                <select name="department" class="inputStyle" ng-model="deptmodel" ng-options="dept.value as dept.option for dept in depts" required>
+                </select>
+                <!-- ng-options="dept.value as dept.option for dept in depts" dynamically changes the options of this dropdown depending upon the value of the Office -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm4-style">
+                <b>Location</b>
+            </div>
+            <div class="col-md-8 col-sm8-style">
+                <input type="text" class="inputStyle" name="location" placeholder="Boston" ng-model="locModel" required />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm4-style">
+                <b>Telephone / Extension</b>
+            </div>
+            <div class="col-md-8 col-sm8-style">
+                <input type="text" ng-change="teleChange()" class="inputStyle" name="telephone" ng-model="teleModel"
+                    placeholder="1234567890" maxlength="10" required />
+            </div>
+        </div><br /><hr />
+        <div class="row">
+        <div class="col-md-1">
+                <b>Type: </b>
+            </div>
+            <div class="col-md-3">
+                <input name="leaveType" type="radio" ng-model="typeModel" ng-change="typeChange()" value="vacation" required />
+                <b>Vacation</b>
+            </div>
+            <div class="col-md-3">
+                <input name="leaveType" type="radio" ng-model="typeModel" value="personal" ng-change="typeChange()" required />
+                <b>Personal</b>
+            </div>
+            <div class="col-md-3">
+                <input name="leaveType" type="radio" ng-model="typeModel" value="sick" ng-change="typeChange()" required />
+                <b>Sick</b>
+            </div>
+            <div class="col-md-2">
+                <input name="leaveType" type="radio" ng-model="typeModel" value="other" ng-change="typeChange()" required />
+                <b>Other</b>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <b>Leave Beginning : </b>
+                <input type="datetime-local" name="begin" ng-change="dateChange()" ng-model="beginModel"
+                    required />
+            </div>
+            <div class="col-md-6">
+                <b>Leave Ending : </b>
+                <input type="datetime-local" name="end" ng-change="dateChange()" ng-model="endModel"
+                    required />
+            </div>
+        </div>
+        <div class="row">
+            <button ng-model="submitModel" class="btn btn-success" ng-click="submitClick()">
+                <h4>
+                    <b>Submit <span class="glyphicon glyphicon-ok"></span></b>
+                </h4>
+            </button>
+            <!-- The submit button will remain disabled untill all the fields are entered "without any errors". -->
+        </div>
+        <br />
+        </form>
+    </div>
+    <div class="container">
+        <b>HTML Code Snippet : </b>
+        <br />
+        <pre>
+&lt;div class="col-md-8 col-sm8-style"&gt;
+    &lt;select name="department" class="inputStyle" ng-model="deptmodel" ng-options="dept.value as dept.option for dept in depts" required&gt;
+    &lt;/select&gt;
+&lt;/div&gt;
+        </pre>
+        <br />
+        <br />
+        <hr />
+        <b>JavaScript Code Snippet : </b>
+        <br />
+        <pre>
+    $scope.offChange = function () {
+        if ($scope.officemodel == "")
+            $scope.depts = null;
+        if ($scope.officemodel == "BRA")
+            $scope.depts = braDept;
+        if ($scope.officemodel == "EDIC")
+            $scope.depts = edicDept;
+        if ($scope.officemodel == "UNION")
+            $scope.depts = unionDept;
+    }
+        </pre>
+        <br />
+        <br />
+        <hr />
+        <b>About the Experiment : </b>
+        <br />
+        <pre>
+        <p>
+            This experiment is the basic form of a leave request application. The department dropdown box is a dependant on office dropdown box.
+        </p>
+        </pre>
+        <br />
+        <hr />
+        <b>Source Code : </b><a href="http://net4.ccs.neu.edu/home/neelesh/fileview/Default.aspx?~/experiments/week07/leave request 2.html">
+            Code</a>
+        <br />
+        <br />
+        <hr />
+        <b>References</b> : <a href="http://www.w3schools.com">W3Schools</a>
+        <br />
+        <br />
+    </div>
+</body>
+</html>
